@@ -670,7 +670,9 @@ static void SetSysClock(void)
   __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
   
   /* Enable HSE and HSE BYPASS */
-  RCC->CR |= ((uint32_t)RCC_CR_HSEON | RCC_CR_HSEBYP);
+  RCC->CR |= ((uint32_t)RCC_CR_
+	
+	ON | RCC_CR_HSEBYP);
  
   /* Wait till HSE is ready and if Time out is reached exit */
   do

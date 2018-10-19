@@ -1,5 +1,6 @@
 #include "sys.h"
 #include "usart.h"	
+#include "led.h"
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //如果使用ucos,则包括下面的头文件即可.
 #if SYSTEM_SUPPORT_OS
@@ -126,8 +127,14 @@ void USART1_IRQHandler(void)                	//串口1中断服务程序
 #endif
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //接收中断(接收到的数据必须是0x0d 0x0a结尾)
 	{
-		Res =USART_ReceiveData(USART1);//(USART1->DR);	//读取接收到的数据
 		
+		if(GPIO_ReadOutputDataBit(GPIOA,GPIO_Pin_5)==1)
+			GPIO_ResetBits(GPIOA,GPIO_Pin_5);
+		else if(GPIO_ReadOutputDataBit(GPIOA,GPIO_Pin_5)==0)
+			GPIO_SetBits(GPIOA,GPIO_Pin_5);
+		
+		Res =USART_ReceiveData(USART1);//(USART1->DR);	//读取接收到的数据
+		USART_SendData(USART1,Res);
 		if((USART_RX_STA&0x8000)==0)//接收未完成
 		{
 			if(USART_RX_STA&0x4000)//接收到了0x0d

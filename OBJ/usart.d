@@ -30,3 +30,4 @@
 ..\obj\usart.o: ..\FWLIB\inc\misc.h
 ..\obj\usart.o: ..\SYSTEM\usart\usart.h
 ..\obj\usart.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\usart.o: ..\HARDWARE\LED\led.h
