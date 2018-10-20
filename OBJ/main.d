@@ -32,3 +32,4 @@
 ..\obj\main.o: ..\HARDWARE\LED\led.h
 ..\obj\main.o: ..\SYSTEM\usart\usart.h
 ..\obj\main.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\main.o: ..\SYSTEM\adc\adc.h
