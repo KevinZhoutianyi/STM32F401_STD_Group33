@@ -1,59 +1,93 @@
+#define __ADC_GLOBAL
+
 #include "adc.h"
 #include "delay.h"		
 #include "usart.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32F407开发板
-//ADC 驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2014/5/6
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	
 
+													   
+void  Adc_Init(int mode)
+{  
+	if(mode == SINGLEMODE)
+	{
+		GPIO_InitTypeDef  GPIO_InitStructure;
+		ADC_CommonInitTypeDef ADC_CommonInitStructure;
+		ADC_InitTypeDef       ADC_InitStructure;
+		
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); 
 
-//初始化ADC															   
-void  Adc_Init(void)
-{    
-  GPIO_InitTypeDef  GPIO_InitStructure;
-	ADC_CommonInitTypeDef ADC_CommonInitStructure;
-	ADC_InitTypeDef       ADC_InitStructure;
-	
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);//使能GPIOA时钟
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); //使能ADC1时钟
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+		GPIO_Init(GPIOA, &GPIO_InitStructure);  
+	 
+		RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,ENABLE);	  
+		RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,DISABLE);	 
+	 
+		
+		ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
+		ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
+		ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
+		ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div4;
+		ADC_CommonInit(&ADC_CommonInitStructure);
+		
+		ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
+		ADC_InitStructure.ADC_ScanConvMode = DISABLE;
+		ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
+		ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+		ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	
+		ADC_InitStructure.ADC_NbrOfConversion = 1;
+		ADC_Init(ADC1, &ADC_InitStructure);
+		ADC1->CR2 &= ~(1<<8); //dma fail to turn down by the library function, here to turn it down forcely
 
-  //先初始化ADC1通道5 IO口
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;//PA5 通道5
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;//模拟输入
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;//不带上下拉
-  GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化  
- 
-	RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,ENABLE);	  //ADC1复位
-	RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,DISABLE);	//复位结束	 
- 
-	
-  ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;//独立模式
-  ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;//两个采样阶段之间的延迟5个时钟
-  ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled; //DMA失能
-  ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div4;//预分频4分频。ADCCLK=PCLK2/4=84/4=21Mhz,ADC时钟最好不要超过36Mhz 
-  ADC_CommonInit(&ADC_CommonInitStructure);//初始化
-	
-  ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;//12位模式
-  ADC_InitStructure.ADC_ScanConvMode = DISABLE;//非扫描模式	
-  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;//关闭连续转换
-  ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;//禁止触发检测，使用软件触发
-  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;//右对齐	
-  ADC_InitStructure.ADC_NbrOfConversion = 1;//1个转换在规则序列中 也就是只转换规则序列1 
-	ADC1->CR2 &= ~(1<<8); //dma fail to turn down by the library function, here to turn it down forcely
-  ADC_Init(ADC1, &ADC_InitStructure);//ADC初始化
-	
- 
-	ADC_Cmd(ADC1, ENABLE);//开启AD转换器	
-	
+		
+	 
+		ADC_Cmd(ADC1, ENABLE);
+	}
+	else if(mode == SCANMODE)
+	{
+		GPIO_InitTypeDef  GPIO_InitStructure;
+		ADC_CommonInitTypeDef ADC_CommonInitStructure;
+		ADC_InitTypeDef       ADC_InitStructure;
+		
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB,ENABLE);
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC,ENABLE);
+				
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE); 
 
+		
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_4;
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+		GPIO_Init(GPIOA, &GPIO_InitStructure);
+		
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+		GPIO_Init(GPIOB, &GPIO_InitStructure); 
+		
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1|GPIO_Pin_0;
+		GPIO_Init(GPIOC, &GPIO_InitStructure); 
+		
+	 
+		RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,ENABLE);	  
+		RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1,DISABLE);	 
+	 
+		
+		ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;            //????????
+    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;         //???????
+    ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T2_TRGO; //???????TIM2
+    ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_Rising;//?????
+    ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;         //12????
+    
+    ADC_Init(ADC1, &ADC_InitStructure);
+		
+		ADC_InitStructure.ADC_NbrOfConversion = 1;
+		ADC1->CR2 &= ~(1<<8); //dma fail to turn down by the library function, here to turn it down forcely
+		ADC_Init(ADC1, &ADC_InitStructure);
+		
+	 
+		ADC_Cmd(ADC1, ENABLE);
+	}
 }				  
 //获得ADC值
 //ch: @ref ADC_channels 
@@ -85,6 +119,19 @@ u16 Get_Adc_Average(u8 ch,u8 times)
 	}
 	return temp_val/times;
 } 
+
+void MySingleAdcRead()
+{
+	u16 adcx;
+	float temp;
+
+	adcx=Get_Adc_Average(0,20);//???? 5 ????,20 ????
+
+	temp=(float)adcx*(3.3/4096); //???????????????,?? 3.1111
+	printf("%f \n",temp);
+	delay_ms(250); 
+		
+}
 	 
 
 

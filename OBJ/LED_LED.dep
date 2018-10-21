@@ -1,5 +1,5 @@
 Dependencies for Project 'LED', Target 'LED': (DO NOT MODIFY !)
-F (.\main.c)(0x5BC9EC9F)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\HARDWARE\LED -I ..\FWLIB\inc -I ..\SYSTEM\adc-I.\RTE\_LED-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IZ:\MDK\ARM\CMSIS\Include-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Device\Include-D__UVISION_VERSION="526" -DSTM32F401xE -DSTM32F401xx -DUSE_STDPERIPH_DRIVER --C99-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5BCC532B)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\HARDWARE\LED -I ..\FWLIB\inc -I ..\SYSTEM\adc-I.\RTE\_LED-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IZ:\MDK\ARM\CMSIS\Include-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Device\Include-D__UVISION_VERSION="526" -DSTM32F401xE -DSTM32F401xx -DUSE_STDPERIPH_DRIVER --C99-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x5BC758B7)
 I (..\USER\stm32f4xx.h)(0x5BC758B7)
 I (..\CORE\core_cm4.h)(0x5BC758B7)
@@ -32,7 +32,7 @@ I (..\SYSTEM\delay\delay.h)(0x5BC758B7)
 I (..\HARDWARE\LED\led.h)(0x5BC758B7)
 I (..\SYSTEM\usart\usart.h)(0x5BC99DEB)
 I (Z:\MDK\ARM\ARMCC\include\stdio.h)(0x599F3DAC)
-I (..\SYSTEM\adc\adc.h)(0x5BC9B08C)
+I (..\SYSTEM\adc\adc.h)(0x5BCC47ED)
 F (.\stm32f4xx_it.c)(0x5BC758B7)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\HARDWARE\LED -I ..\FWLIB\inc -I ..\SYSTEM\adc-I.\RTE\_LED-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IZ:\MDK\ARM\CMSIS\Include-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Device\Include-D__UVISION_VERSION="526" -DSTM32F401xE -DSTM32F401xx -DUSE_STDPERIPH_DRIVER --C99-o ..\obj\stm32f4xx_it.o --omf_browse ..\obj\stm32f4xx_it.crf --depend ..\obj\stm32f4xx_it.d)
 I (stm32f4xx_it.h)(0x5BC758B7)
 I (stm32f4xx.h)(0x5BC758B7)
@@ -213,8 +213,8 @@ I (..\FWLIB\inc\misc.h)(0x5BC758B7)
 I (..\SYSTEM\usart\usart.h)(0x5BC99DEB)
 I (Z:\MDK\ARM\ARMCC\include\stdio.h)(0x599F3DAC)
 I (..\HARDWARE\LED\led.h)(0x5BC758B7)
-F (..\SYSTEM\adc\adc.c)(0x5BC9F92A)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\HARDWARE\LED -I ..\FWLIB\inc -I ..\SYSTEM\adc-I.\RTE\_LED-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IZ:\MDK\ARM\CMSIS\Include-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Device\Include-D__UVISION_VERSION="526" -DSTM32F401xE -DSTM32F401xx -DUSE_STDPERIPH_DRIVER --C99-o ..\obj\adc.o --omf_browse ..\obj\adc.crf --depend ..\obj\adc.d)
-I (..\SYSTEM\adc\adc.h)(0x5BC9B08C)
+F (..\SYSTEM\adc\adc.c)(0x5BCC5426)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\HARDWARE\LED -I ..\FWLIB\inc -I ..\SYSTEM\adc-I.\RTE\_LED-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IZ:\MDK\ARM\CMSIS\Include-IZ:\MDK\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Device\Include-D__UVISION_VERSION="526" -DSTM32F401xE -DSTM32F401xx -DUSE_STDPERIPH_DRIVER --C99-o ..\obj\adc.o --omf_browse ..\obj\adc.crf --depend ..\obj\adc.d)
+I (..\SYSTEM\adc\adc.h)(0x5BCC47ED)
 I (..\SYSTEM\sys\sys.h)(0x5BC758B7)
 I (..\USER\stm32f4xx.h)(0x5BC758B7)
 I (..\CORE\core_cm4.h)(0x5BC758B7)
