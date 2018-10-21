@@ -47,8 +47,10 @@ void  Adc_Init(void)
   ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;//禁止触发检测，使用软件触发
   ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;//右对齐	
   ADC_InitStructure.ADC_NbrOfConversion = 1;//1个转换在规则序列中 也就是只转换规则序列1 
-	ADC1->CR2 &= ~(1<<8); //dma fail to turn down by the library function, here to turn it down forcely
+
   ADC_Init(ADC1, &ADC_InitStructure);//ADC初始化
+	
+	ADC1->CR2 &= ~(1<<8); //dma fail to turn down by the library function, here to turn it down forcely
 	
  
 	ADC_Cmd(ADC1, ENABLE);//开启AD转换器	
