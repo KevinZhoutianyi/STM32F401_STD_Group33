@@ -24,6 +24,9 @@ __ADC_EXT uint16_t sample_3[128];
 __ADC_EXT uint16_t sample_4[128];
 __ADC_EXT uint16_t sample_5[128];
 __ADC_EXT uint16_t sample_6[128];
+__ADC_EXT uint16_t adc_dma_tab[6];
+__ADC_EXT uint8_t sample_finish;
+__ADC_EXT uint8_t sample_index;
 
 
 
