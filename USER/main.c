@@ -11,7 +11,7 @@ int main(void)
 	delay_init(84);		
 	LED_Init();
 	uart_init(9600,2);
-Adc_Init(SINGLEMODE);
+	Adc_Init(SINGLEMODE);
 	
 	while(1)
 	{
