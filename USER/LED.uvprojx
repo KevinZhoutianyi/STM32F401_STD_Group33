@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>LED</TargetName>
+      <TargetName>Kevin</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>..\OBJ\</OutputDirectory>
-          <OutputName>LED</OutputName>
+          <OutputName>Kevin</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F401xx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\HARDWARE\LED;..\FWLIB\inc;..\SYSTEM\adc</IncludePath>
+              <IncludePath>..\CORE;..\MYLIB\delay;..\MYLIB\sys;..\MYLIB\usart;..\USER;..\HARDWARE\LED;..\FWLIB\inc;..\MYLIB\adc;..\MYLIB\LED</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -401,36 +401,34 @@
         </Group>
         <Group>
           <GroupName>HARDWARE</GroupName>
-          <Files>
-            <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\LED\led.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
-          <GroupName>SYSTEM</GroupName>
+          <GroupName>MYLIB</GroupName>
           <Files>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MYLIB\adc\adc.c</FilePath>
+            </File>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
+              <FilePath>..\MYLIB\delay\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MYLIB\LED\led.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
+              <FilePath>..\MYLIB\sys\sys.c</FilePath>
             </File>
             <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SYSTEM\usart\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\adc\adc.c</FilePath>
+              <FilePath>..\MYLIB\usart\usart.c</FilePath>
             </File>
           </Files>
         </Group>
