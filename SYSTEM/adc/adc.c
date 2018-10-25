@@ -140,7 +140,8 @@ void  Adc_Init(int mode)
 		ADC->CCR = ((uint32_t)0x00010000);
 		ADC1->CR1 = ((uint32_t)0x0400A13F);
 		ADC1->CR2 = ((uint32_t)0x0D0D0103);//bit 9 
-		
+		ADC1->SQR1 = ((uint32_t)0x00000000);//
+		ADC1->SQR2 = ((uint32_t)0x00000000);//
 		ADC1->SQR3 = ((uint32_t)0x14B41020);//     01010  01011  01000   00100   00001   00000
 		ADC1->SMPR2 = ((uint32_t)0x001fffff);
 		
@@ -149,32 +150,43 @@ void  Adc_Init(int mode)
 		
 		
 
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1 , ENABLE);              //??DMA??
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2 , ENABLE);              //??DMA??
  
-    nvic_init_structure.NVIC_IRQChannel = DMA1_Stream7_IRQn;       //??DMA1????
+    nvic_init_structure.NVIC_IRQChannel = DMA2_Stream0_IRQn;       //??DMA1????
     nvic_init_structure.NVIC_IRQChannelCmd = ENABLE;                //????
     nvic_init_structure.NVIC_IRQChannelPreemptionPriority = 0; 
 		nvic_init_structure.NVIC_IRQChannelSubPriority = 0;		//?????0
     NVIC_Init(&nvic_init_structure);
  
-    DMA_DeInit(DMA1_Stream7);                                      //??DMA1_channel1
-    DMA_StructInit(&dma_init_structure);                            //???DMA???
+    DMA_DeInit(DMA2_Stream0);
+	
+	while (DMA_GetCmdStatus(DMA2_Stream0) != DISABLE){}//等待DMA可配置 
+	
+  /* 配置 DMA Stream */
+  dma_init_structure.DMA_Channel = 0;  //通道选择
+  dma_init_structure.DMA_PeripheralBaseAddr = (uint32_t) &(ADC1->DR);//DMA外设地址
+  dma_init_structure.DMA_Memory0BaseAddr = (uint32_t)&adc_dma_tab[0];;//DMA 存储器0地址
+  dma_init_structure.DMA_DIR = DMA_DIR_MemoryToPeripheral;//存储器到外设模式
+  dma_init_structure.DMA_BufferSize = 6;//数据传输量 
+  dma_init_structure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;//外设非增量模式
+  dma_init_structure.DMA_MemoryInc = DMA_MemoryInc_Enable;//存储器增量模式
+  dma_init_structure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;//外设数据长度:8位
+  dma_init_structure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;//存储器数据长度:8位
+  dma_init_structure.DMA_Mode = DMA_Mode_Normal;// 使用普通模式 
+  dma_init_structure.DMA_Priority = DMA_Priority_Medium;//中等优先级
+  dma_init_structure.DMA_FIFOMode = DMA_FIFOMode_Disable;         
+  dma_init_structure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
+  dma_init_structure.DMA_MemoryBurst = DMA_MemoryBurst_Single;//存储器突发单次传输
+  dma_init_structure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;//外设突发单次传输
+  DMA_Init(DMA2_Stream0, &dma_init_structure);//初始化DMA Stream
+		
+	DMA_Cmd(DMA2_Stream0, DISABLE);                      //关闭DMA传输 
+	
+	while (DMA_GetCmdStatus(DMA2_Stream0) != DISABLE){}	//确保DMA可以被设置  
+		
+	DMA_SetCurrDataCounter(DMA2_Stream0,6);          //数据传输量  
  
-    dma_init_structure.DMA_BufferSize = 6;            //DMA????????
-    dma_init_structure.DMA_DIR = DMA_DIR_PeripheralToMemory;             //DMA??:???????                          //???????
-    dma_init_structure.DMA_Memory0BaseAddr = (uint32_t)&adc_dma_tab[0];//??????????
-    dma_init_structure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;//???????Halfword
-    dma_init_structure.DMA_MemoryInc = DMA_MemoryInc_Enable;        //??????
-    dma_init_structure.DMA_Mode = DMA_Mode_Circular;                //DMA????,??????????
-    dma_init_structure.DMA_PeripheralBaseAddr = (uint32_t) &(ADC1->DR);//???????
-    dma_init_structure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;//?????????Halfword
-    dma_init_structure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;//????????
-    dma_init_structure.DMA_Priority = DMA_Priority_High;             //DMA???????
-    DMA_Init(DMA1_Stream7, &dma_init_structure);
- 
-    DMA_ITConfig(DMA1_Stream7, DMA_IT_TC, ENABLE);                  //??DMA??
-    DMA_ClearITPendingBit(DMA1_Stream7,DMA_IT_TC);                        //????DMA????
-    DMA_Cmd(DMA1_Stream7, ENABLE);                                  //??DMA1
+	DMA_Cmd(DMA2_Stream0, ENABLE);                      //开启DMA传输 
 //---------------------------------------------------------------------------------------------------------------
 
 
@@ -225,10 +237,10 @@ void MySingleAdcRead()
 }
 
 
-void DMA1_Channel1_IRQHandler()
+void DMA2_Stream0_IRQHandler()
 {
 	GPIO_SetBits(GPIOA,GPIO_Pin_5);
-    if(DMA_GetITStatus(DMA1_Stream7,DMA_IT_TC))                      //??DMA??????
+    if(DMA_GetITStatus(DMA2_Stream4,DMA_IT_TC))                      //??DMA??????
     {
         if(sample_finish == 0)
         {
@@ -243,11 +255,11 @@ void DMA1_Channel1_IRQHandler()
         if(sample_index >= 128)                         //??????????????
         {
             sample_index = 0;                   //??????,?????
-            DMA_Cmd(DMA1_Stream7, DISABLE);            //??????,??DMA
+            DMA_Cmd(DMA2_Stream0, DISABLE);            //??????,??DMA
             sample_finish = 1;                          //????????
         }
     }
-    DMA_ClearITPendingBit(DMA1_Stream7,DMA_IT_TC);                   //??DMA?????
+    DMA_ClearITPendingBit(DMA2_Stream0,DMA_IT_TC);                   //??DMA?????
 }
 
 
