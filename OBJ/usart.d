@@ -1,5 +1,5 @@
-..\obj\usart.o: ..\SYSTEM\usart\usart.c
-..\obj\usart.o: ..\SYSTEM\sys\sys.h
+..\obj\usart.o: ..\MYLIB\usart\usart.c
+..\obj\usart.o: ..\MYLIB\sys\sys.h
 ..\obj\usart.o: ..\USER\stm32f4xx.h
 ..\obj\usart.o: ..\CORE\core_cm4.h
 ..\obj\usart.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
@@ -28,6 +28,6 @@
 ..\obj\usart.o: ..\FWLIB\inc\stm32f4xx_usart.h
 ..\obj\usart.o: ..\FWLIB\inc\stm32f4xx_wwdg.h
 ..\obj\usart.o: ..\FWLIB\inc\misc.h
-..\obj\usart.o: ..\SYSTEM\usart\usart.h
+..\obj\usart.o: ..\MYLIB\usart\usart.h
 ..\obj\usart.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
-..\obj\usart.o: ..\HARDWARE\LED\led.h
+..\obj\usart.o: ..\MYLIB\LED\led.h

@@ -33,12 +33,12 @@ u8 USART_RX_BUF[USART_REC_LEN];
 u16 USART_RX_STA=0;       //status	
 
 
-void uart_init(u32 bound,int x){
+void uart_init(u32 bound,int USARTx){
 
   GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
-	if(x==1)
+	if(USARTx==1)
 	{
 	
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA,ENABLE); 
@@ -79,7 +79,7 @@ void uart_init(u32 bound,int x){
 
 	#endif
 	}
-	else if(x==2)
+	else if(USARTx==2)
 	{
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA,ENABLE); 
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
