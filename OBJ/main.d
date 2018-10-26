@@ -1,5 +1,5 @@
 ..\obj\main.o: main.c
-..\obj\main.o: ..\MYLIB\sys\sys.h
+..\obj\main.o: ..\MYLIB\inc\sys.h
 ..\obj\main.o: ..\USER\stm32f4xx.h
 ..\obj\main.o: ..\CORE\core_cm4.h
 ..\obj\main.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
@@ -28,8 +28,9 @@
 ..\obj\main.o: ..\FWLIB\inc\stm32f4xx_usart.h
 ..\obj\main.o: ..\FWLIB\inc\stm32f4xx_wwdg.h
 ..\obj\main.o: ..\FWLIB\inc\misc.h
-..\obj\main.o: ..\MYLIB\delay\delay.h
-..\obj\main.o: ..\MYLIB\LED\led.h
-..\obj\main.o: ..\MYLIB\usart\usart.h
+..\obj\main.o: ..\MYLIB\inc\delay.h
+..\obj\main.o: ..\MYLIB\inc\led.h
+..\obj\main.o: ..\MYLIB\inc\usart.h
 ..\obj\main.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdio.h
-..\obj\main.o: ..\MYLIB\adc\adc.h
+..\obj\main.o: ..\MYLIB\inc\adc.h
+..\obj\main.o: ..\MYLIB\inc\led_shield.h

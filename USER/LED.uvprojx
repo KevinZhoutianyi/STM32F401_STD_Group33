@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4099</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F401xx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\MYLIB\delay;..\MYLIB\sys;..\MYLIB\usart;..\USER;..\HARDWARE\LED;..\FWLIB\inc;..\MYLIB\adc;..\MYLIB\LED</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\FWLIB\inc;..\MYLIB\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -408,27 +408,32 @@
             <File>
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\adc\adc.c</FilePath>
+              <FilePath>..\MYLIB\src\adc.c</FilePath>
             </File>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\delay\delay.c</FilePath>
+              <FilePath>..\MYLIB\src\delay.c</FilePath>
             </File>
             <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\LED\led.c</FilePath>
+              <FilePath>..\MYLIB\src\led.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\sys\sys.c</FilePath>
+              <FilePath>..\MYLIB\src\sys.c</FilePath>
             </File>
             <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\usart\usart.c</FilePath>
+              <FilePath>..\MYLIB\src\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_shield.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MYLIB\src\led_shield.c</FilePath>
             </File>
           </Files>
         </Group>
