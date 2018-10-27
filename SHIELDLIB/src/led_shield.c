@@ -44,7 +44,7 @@ void Blink(void)
 	else if((temp)%3 == 2)
 		LEDB = !LEDB;
 	
-	delay_ms(100);
+	delay_ms(35);
 	
 	
 }

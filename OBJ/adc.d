@@ -1,6 +1,6 @@
-..\obj\adc.o: ..\MYLIB\src\adc.c
-..\obj\adc.o: ..\MYLIB\inc\adc.h
-..\obj\adc.o: ..\MYLIB\inc\sys.h
+..\obj\adc.o: ..\NUCLEOLIB\src\adc.c
+..\obj\adc.o: ..\NUCLEOLIB\inc\adc.h
+..\obj\adc.o: ..\NUCLEOLIB\inc\sys.h
 ..\obj\adc.o: ..\USER\stm32f4xx.h
 ..\obj\adc.o: ..\CORE\core_cm4.h
 ..\obj\adc.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
@@ -29,6 +29,6 @@
 ..\obj\adc.o: ..\FWLIB\inc\stm32f4xx_usart.h
 ..\obj\adc.o: ..\FWLIB\inc\stm32f4xx_wwdg.h
 ..\obj\adc.o: ..\FWLIB\inc\misc.h
-..\obj\adc.o: ..\MYLIB\inc\delay.h
-..\obj\adc.o: ..\MYLIB\inc\usart.h
+..\obj\adc.o: ..\NUCLEOLIB\inc\delay.h
+..\obj\adc.o: ..\NUCLEOLIB\inc\usart.h
 ..\obj\adc.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdio.h

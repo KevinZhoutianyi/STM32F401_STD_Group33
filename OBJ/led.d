@@ -1,6 +1,6 @@
-..\obj\led.o: ..\MYLIB\src\led.c
-..\obj\led.o: ..\MYLIB\inc\led.h
-..\obj\led.o: ..\MYLIB\inc\sys.h
+..\obj\led.o: ..\NUCLEOLIB\src\led.c
+..\obj\led.o: ..\NUCLEOLIB\inc\led.h
+..\obj\led.o: ..\NUCLEOLIB\inc\sys.h
 ..\obj\led.o: ..\USER\stm32f4xx.h
 ..\obj\led.o: ..\CORE\core_cm4.h
 ..\obj\led.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdint.h

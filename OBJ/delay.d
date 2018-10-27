@@ -1,6 +1,6 @@
-..\obj\delay.o: ..\MYLIB\src\delay.c
-..\obj\delay.o: ..\MYLIB\inc\delay.h
-..\obj\delay.o: ..\MYLIB\inc\sys.h
+..\obj\delay.o: ..\NUCLEOLIB\src\delay.c
+..\obj\delay.o: ..\NUCLEOLIB\inc\delay.h
+..\obj\delay.o: ..\NUCLEOLIB\inc\sys.h
 ..\obj\delay.o: ..\USER\stm32f4xx.h
 ..\obj\delay.o: ..\CORE\core_cm4.h
 ..\obj\delay.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdint.h

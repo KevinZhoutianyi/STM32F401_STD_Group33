@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F401xx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\FWLIB\inc;..\MYLIB\inc</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\FWLIB\inc;..\NUCLEOLIB\inc;..\SHIELDLIB\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -403,37 +403,32 @@
           <GroupName>HARDWARE</GroupName>
         </Group>
         <Group>
-          <GroupName>MYLIB</GroupName>
+          <GroupName>NUCLEOLIB</GroupName>
           <Files>
             <File>
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\src\adc.c</FilePath>
+              <FilePath>..\NUCLEOLIB\src\adc.c</FilePath>
             </File>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\src\delay.c</FilePath>
+              <FilePath>..\NUCLEOLIB\src\delay.c</FilePath>
             </File>
             <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\src\led.c</FilePath>
+              <FilePath>..\NUCLEOLIB\src\led.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\src\sys.c</FilePath>
+              <FilePath>..\NUCLEOLIB\src\sys.c</FilePath>
             </File>
             <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MYLIB\src\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>led_shield.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MYLIB\src\led_shield.c</FilePath>
+              <FilePath>..\NUCLEOLIB\src\usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -484,6 +479,26 @@
               <FileName>stm32f4xx_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FWLIB\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FWLIB\src\stm32f4xx_tim.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SHIELDLIB</GroupName>
+          <Files>
+            <File>
+              <FileName>led_shield.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SHIELDLIB\src\led_shield.c</FilePath>
+            </File>
+            <File>
+              <FileName>speaker_shield.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SHIELDLIB\src\speaker_shield.c</FilePath>
             </File>
           </Files>
         </Group>

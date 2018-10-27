@@ -4,7 +4,7 @@
 #include "usart.h"
 #include "adc.h"
 #include "led_shield.h"
-
+#include "speaker_shield.h"
 int main(void)
 { 
 	
@@ -13,7 +13,7 @@ int main(void)
 	LED_Init();
 	LED_Shield_Init();
 	uart_init(9600,2);
-
+	Speaker_Shield_Init(2000);
 	
 	while(1)
 	{

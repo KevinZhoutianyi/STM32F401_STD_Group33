@@ -1,6 +1,6 @@
-..\obj\led_shield.o: ..\MYLIB\src\led_shield.c
-..\obj\led_shield.o: ..\MYLIB\inc\led_shield.h
-..\obj\led_shield.o: ..\MYLIB\inc\sys.h
+..\obj\led_shield.o: ..\SHIELDLIB\src\led_shield.c
+..\obj\led_shield.o: ..\SHIELDLIB\inc\led_shield.h
+..\obj\led_shield.o: ..\NUCLEOLIB\inc\sys.h
 ..\obj\led_shield.o: ..\USER\stm32f4xx.h
 ..\obj\led_shield.o: ..\CORE\core_cm4.h
 ..\obj\led_shield.o: Z:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
@@ -29,4 +29,4 @@
 ..\obj\led_shield.o: ..\FWLIB\inc\stm32f4xx_usart.h
 ..\obj\led_shield.o: ..\FWLIB\inc\stm32f4xx_wwdg.h
 ..\obj\led_shield.o: ..\FWLIB\inc\misc.h
-..\obj\led_shield.o: ..\MYLIB\inc\delay.h
+..\obj\led_shield.o: ..\NUCLEOLIB\inc\delay.h
